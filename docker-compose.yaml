@@ -1,0 +1,23 @@
+services:
+  scraper:
+    build:
+      context: .
+      dockerfile: Dockerfile.rod
+    image: itibar-scraper
+    container_name: itibar-scraper
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - gmapsdata:/gmapsdata
+    environment:
+      - DISABLE_TELEMETRY=1
+    command: -data-folder /gmapsdata
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    shm_size: 2gb
+
+volumes:
+  gmapsdata:

@@ -2,6 +2,27 @@ cache/
 vendor
 bin
 webdata/
-examples/examples-api/map-outputs
-examples/examples-api/**/__pycache__/
-examples/examples-api/**/*.py[cod]
+gmapsdata/
+*.db
+*.csv
+.env
+.env.local
+
+# Build artifacts
+*.exe
+*.test
+*.out
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Go
+coverage.out
+coverage.html

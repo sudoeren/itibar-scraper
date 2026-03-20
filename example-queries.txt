@@ -1,7 +1,10 @@
-cafe in athens
-restaurant in athens
-restaurant in rome
-restaurant in paris
-restaurant in madrid
-restaurant in berln
-restaurant in bari
+cafe in Istanbul
+restaurant in Istanbul
+hotel in Istanbul
+dentist in Istanbul
+pharmacy in Istanbul
+beauty salon in Ankara
+gym in Izmir
+restaurant in Bursa
+cafe in Antalya
+hotel in Bodrum

@@ -83,7 +83,7 @@ func (w *webrunner) Close(context.Context) error {
 }
 
 func (w *webrunner) work(ctx context.Context) error {
-	ticker := time.NewTicker(time.Second)
+	ticker := time.NewTicker(500 * time.Millisecond)
 	defer ticker.Stop()
 
 	for {
@@ -194,7 +194,7 @@ func (w *webrunner) scrapeJob(ctx context.Context, job *web.Job) error {
 		}(),
 		dedup,
 		exitMonitor,
-		w.cfg.ExtraReviews,
+		job.Data.ExtraReviews || w.cfg.ExtraReviews,
 	)
 	if err != nil {
 		err2 := w.svc.Update(ctx, job)

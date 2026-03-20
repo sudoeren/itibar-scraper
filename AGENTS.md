@@ -1,24 +1,44 @@
-# Development Guide for Agents
+# İtibar Scraper - Geliştirme
 
-## Build/Test Commands
-- `make test` - Run all unit tests with race detection
-- `make test-cover` - Run tests with coverage statistics  
-- `make lint` - Run golangci-lint with project configuration
-- `make vet` - Run go vet static analysis
-- `make format` - Format code with gofmt
-- `go test ./path/to/package` - Run tests for a specific package
+## Proje
 
-## Code Style Guidelines
-- Use `gofmt` for formatting (spaces, not tabs)
-- Import order: standard library, third-party, local packages (prefix: github.com/gosom/google-maps-scraper)
-- Use descriptive variable names (e.g., `entry`, `cfg`, `ctx`)
-- Error handling: return errors, use `fmt.Errorf` with wrapping (`%w`)
-- Use struct tags for JSON marshaling: `json:"field_name"`
-- Constants use CamelCase (e.g., `RunModeFile`)
-- Interface names end with -er suffix (e.g., `Runner`, `S3Uploader`)
-- Use context.Context as first parameter in functions
-- Prefer early returns to reduce nesting
-- Use meaningful package names that reflect their purpose
-- Add godoc comments for exported types and functions
-- Use `nolint` comments sparingly with explanations
-- Avoid magic numbers, use named constants or comment them
+[gosom/google-maps-scraper](https://github.com/gosom/google-maps-scraper) üzerine inşa edilmiş, API-only Google Maps scraper.
+
+## Build
+
+```bash
+make test
+make vet
+make format
+```
+
+## Proje Yapısı
+
+```
+├── api/           # REST API
+├── cmd/           # CLI
+├── gmaps/         # Veri modelleri
+├── runner/        # Çalışma modları
+├── web/           # API sunucu
+└── main.go
+```
+
+## Önemli Dosyalar
+
+| Dosya | Açıklama |
+|-------|----------|
+| `web/web.go` | API endpoint'leri |
+| `web/job.go` | JobData yapısı |
+| `runner/webrunner/` | Web runner |
+| `gmaps/entry.go` | Entry ve Review modelleri |
+
+## API
+
+| Endpoint | Method | Açıklama |
+|----------|--------|----------|
+| `/health` | GET | Health check |
+| `/api/v1/jobs` | POST | İş oluştur |
+| `/api/v1/jobs` | GET | İşleri listele |
+| `/api/v1/jobs/{id}` | GET | İş durumu |
+| `/api/v1/jobs/{id}` | DELETE | İşi sil |
+| `/api/v1/jobs/{id}/download` | GET | CSV indir |
