@@ -5,14 +5,11 @@ API-only Google Maps scraper. Sadece REST API sunar.
 ## Başlat
 
 ```bash
-# İlk çalıştırma (build gerekir)
+# Build et ve çalıştır
 docker-compose up -d --build
-
-# Sonraki çalıştırmalar
-docker-compose up -d
 ```
 
-Bu kadar. Scraper `http://localhost:8080` adresinde çalışır.
+Scraper `http://localhost:8080` adresinde çalışır.
 
 ## Durdur
 
@@ -26,60 +23,32 @@ docker-compose down
 docker-compose down -v
 ```
 
-## Logları İncele
+## Log
 
 ```bash
 docker-compose logs -f
 ```
 
-## API Kullanımı
-
-### Health Check
+## API
 
 ```bash
+# Health check
 curl http://localhost:8080/health
-```
 
-### İş Oluştur
-
-```bash
+# İş oluştur
 curl -X POST http://localhost:8080/api/v1/jobs \
   -H "Content-Type: application/json" \
-  -d '{
-    "keywords": ["cafe in Istanbul"],
-    "lang": "tr",
-    "depth": 1,
-    "max_time": 600
-  }'
-```
+  -d '{"keywords": ["cafe in Istanbul"], "lang": "tr", "depth": 1}'
 
-### İş Durumu
-
-```bash
+# İş durumu
 curl http://localhost:8080/api/v1/jobs/{id}
-```
 
-### Sonuç İndir
-
-```bash
+# Sonuç indir
 curl -O http://localhost:8080/api/v1/jobs/{id}/download
 ```
 
-## Geliştirme
+## Coolify
 
-```bash
-# Build et ve çalıştır
-docker-compose up -d --build
-
-# Sadece build
-docker build -f Dockerfile.rod -t itibar-scraper .
-
-# Sadece run
-docker-compose up -d
-```
-
-## Coolify Deploy
-
-1. GitHub repo'yu bağla: `sudoeren/itibar-scraper`
+1. Repo: `sudoeren/itibar-scraper`
 2. Dockerfile: `Dockerfile.rod`
 3. CMD: `-data-folder /gmapsdata`
